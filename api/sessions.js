@@ -3,7 +3,7 @@ const router = express.Router();
 
 const Session = require("../models/session.model");
 const ExerciseUser = require("../models/exercise-user.model");
-const isAuthenticated = require("../is-authenticated");
+const isAuthenticated = require("../src/is-authenticated");
 
 // Get all sessions by user
 

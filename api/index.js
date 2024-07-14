@@ -7,7 +7,7 @@ const exerciseUser = require("./exercise-user.js");
 const exerciseType = require("./exercise-type.js");
 const emojis = require("./emojis.js");
 
-const isAuthenticated = require("../is-authenticated.js");
+const isAuthenticated = require("../src/is-authenticated.js");
 
 router.get("/", (req, res, next) => {
   res.json({
