@@ -5,7 +5,7 @@ const sessionSchema = new Schema(
     date_session: { type: Date, required: true },
     type_session: {
       type: String,
-      enum: ["Upper A", "Lower", "Upper B", "Other"],
+      enum: ["Upper A", "Lower", "Upper B", "Other", "Séance A", "Séance B"],
       required: true,
     },
     body_weight: {

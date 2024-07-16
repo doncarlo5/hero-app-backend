@@ -98,7 +98,7 @@ router.put("/:id", async (req, res, next) => {
 
     if (
       type_session &&
-      !["Upper A", "Lower", "Upper B"].includes(type_session)
+      !["Upper A", "Lower", "Upper B", "Other", "Séance A", "Séance B"].includes(type_session)
     ) {
       return res.status(400).json({ message: "Invalid type session" });
     }

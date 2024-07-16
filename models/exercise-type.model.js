@@ -27,7 +27,7 @@ const exerciseTypeSchema = new Schema(
     },
     type_session: {
       type: String,
-      enum: ["Upper A", "Lower", "Upper B"],
+      enum: ["Upper A", "Lower", "Upper B", "Other", "Séance A", "Séance B"],
       required: true,
     },
     owner: {
