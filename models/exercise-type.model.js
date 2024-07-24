@@ -25,6 +25,10 @@ const exerciseTypeSchema = new Schema(
       type: String,
       required: true,
     },
+    repRange4: {
+      type: String,
+      required: true,
+    },
     type_session: {
       type: String,
       enum: ["Upper A", "Lower", "Upper B", "Other", "Séance A", "Séance B"],

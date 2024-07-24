@@ -48,6 +48,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "8-12",
         repRange2: "8-12",
         repRange3: "8-12",
+        repRange4: "",
         type_session: "Upper A",
       },
       {
@@ -57,6 +58,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "4-6",
         repRange2: "6-8",
         repRange3: "8-10",
+        repRange4: "",
         type_session: "Upper A",
       },
       {
@@ -66,6 +68,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "8-12",
         repRange2: "8-12",
         repRange3: "8-12",
+        repRange4: "",
         type_session: "Lower",
       },
       {
@@ -75,6 +78,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "4-6",
         repRange2: "6-8",
         repRange3: "8-10",
+        repRange4: "",
         type_session: "Upper B",
       },
       {
@@ -84,6 +88,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "10-15",
         repRange2: "10-15",
         repRange3: "10-15",
+        repRange4: "",
         type_session: "Lower",
       },
       {
@@ -93,6 +98,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "4-6",
         repRange2: "6-8",
         repRange3: "8-10",
+        repRange4: "",
         type_session: "Upper A",
       },
       {
@@ -102,6 +108,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "10-15",
         repRange2: "10-15",
         repRange3: "10-15",
+        repRange4: "",
         type_session: "Upper A",
       },
       {
@@ -111,6 +118,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "10-15",
         repRange2: "10-15",
         repRange3: "10-15",
+        repRange4: "",
         type_session: "Lower",
       },
       {
@@ -120,6 +128,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "10-15",
         repRange2: "10-15",
         repRange3: "10-15",
+        repRange4: "",
         type_session: "Lower",
       },
       {
@@ -129,6 +138,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "10-15",
         repRange2: "10-15",
         repRange3: "10-15",
+        repRange4: "",
         type_session: "Lower",
       },
       {
@@ -138,6 +148,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "4-6",
         repRange2: "6-8",
         repRange3: "8-10",
+        repRange4: "",
         type_session: "Upper B",
       },
       {
@@ -147,6 +158,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "8-12",
         repRange2: "8-12",
         repRange3: "8-12",
+        repRange4: "",
         type_session: "Upper B",
       },
       {
@@ -156,6 +168,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "15-20",
         repRange2: "15-20",
         repRange3: "15-20",
+        repRange4: "",
         type_session: "Upper B",
       },
       {
@@ -165,6 +178,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "10-15",
         repRange2: "10-15",
         repRange3: "10-15",
+        repRange4: "",
         type_session: "Upper B",
       },
       {
@@ -174,6 +188,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "4-6",
         repRange2: "6-8",
         repRange3: "8-10",
+        repRange4: "",
         type_session: "Upper A",
       },
       {
@@ -183,6 +198,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "8-12",
         repRange2: "8-12",
         repRange3: "8-12",
+        repRange4: "",
         type_session: "Upper A",
       },
       {
@@ -193,6 +209,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "15-20",
         repRange2: "10-15",
         repRange3: "8-10",
+        repRange4: "",
         type_session: "Upper A",
       },
       {
@@ -202,6 +219,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "6-10",
         repRange2: "6-10",
         repRange3: "6-10",
+        repRange4: "",
         type_session: "Lower",
       },
       {
@@ -211,6 +229,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "12-15",
         repRange2: "8-12",
         repRange3: "6-10",
+        repRange4: "",
         type_session: "Lower",
       },
       {
@@ -220,6 +239,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "4-6",
         repRange2: "6-8",
         repRange3: "8-10",
+        repRange4: "",
         type_session: "Upper B",
       },
       {
@@ -229,6 +249,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "8-12",
         repRange2: "8-12",
         repRange3: "8-12",
+        repRange4: "",
         type_session: "Upper B",
       },
       {
@@ -238,6 +259,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "8-12",
         repRange2: "8-12",
         repRange3: "8-12",
+        repRange4: "",
         type_session: "Lower",
       },
       {
@@ -247,6 +269,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "10-15",
         repRange2: "10-15",
         repRange3: "10-15",
+        repRange4: "",
         type_session: "Upper A",
       },
       {
@@ -256,6 +279,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "8-12",
         repRange2: "8-12",
         repRange3: "8-12",
+        repRange4: "",
         type_session: "Upper A",
       },
       {
@@ -265,6 +289,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "8-12",
         repRange2: "8-12",
         repRange3: "8-12",
+        repRange4: "",
         type_session: "Upper A",
       },
       {
@@ -274,6 +299,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "6-10",
         repRange2: "6-10",
         repRange3: "6-10",
+        repRange4: "",
         type_session: "Lower",
       },
       {
@@ -283,6 +309,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "6-10",
         repRange2: "6-10",
         repRange3: "6-10",
+        repRange4: "",
         type_session: "Lower",
       },
       {
@@ -292,6 +319,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "8-12",
         repRange2: "8-12",
         repRange3: "8-12",
+        repRange4: "",
         type_session: "Lower",
       },
       {
@@ -302,6 +330,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "15-20",
         repRange2: "10-15",
         repRange3: "6-10",
+        repRange4: "",
         type_session: "Lower",
       },
       {
@@ -311,6 +340,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "4-6",
         repRange2: "6-8",
         repRange3: "8-10",
+        repRange4: "",
         type_session: "Upper B",
       },
       {
@@ -320,6 +350,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "10-15",
         repRange2: "10-15",
         repRange3: "10-15",
+        repRange4: "",
         type_session: "Upper B",
       },
       {
@@ -330,6 +361,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "12-15",
         repRange2: "8-12",
         repRange3: "6-10",
+        repRange4: "",
         type_session: "Upper B",
       },
       {
@@ -339,6 +371,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "4-6",
         repRange2: "6-8",
         repRange3: "8-10",
+        repRange4: "",
         type_session: "Séance A",
       },
       {
@@ -348,6 +381,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "4-6",
         repRange2: "6-8",
         repRange3: "8-10",
+        repRange4: "",
         type_session: "Séance A",
       },
       {
@@ -357,6 +391,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "10-15",
         repRange2: "10-15",
         repRange3: "10-15",
+        repRange4: "",
         type_session: "Séance A",
       },
       {
@@ -366,6 +401,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "10-15",
         repRange2: "10-15",
         repRange3: "10-15",
+        repRange4: "",
         type_session: "Séance A",
       },
       {
@@ -375,6 +411,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "10-15",
         repRange2: "4-6",
         repRange3: "4-6",
+        repRange4: "",
         type_session: "Séance A",
       },
       {
@@ -384,6 +421,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "4-6",
         repRange2: "6-8",
         repRange3: "8-10",
+        repRange4: "",
         type_session: "Séance B",
       },
       {
@@ -394,6 +432,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "4-6",
         repRange2: "6-8",
         repRange3: "8-10",
+        repRange4: "",
         type_session: "Séance B",
       },
       {
@@ -404,6 +443,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "10-15",
         repRange2: "10-15",
         repRange3: "10-15",
+        repRange4: "",
         type_session: "Séance B",
       },
       {
@@ -413,6 +453,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "10-15",
         repRange2: "10-15",
         repRange3: "10-15",
+        repRange4: "",
         type_session: "Séance B",
       },
       {
@@ -422,6 +463,7 @@ router.post("/signup", async (req, res, next) => {
         repRange1: "10-15",
         repRange2: "4-6",
         repRange3: "4-6",
+        repRange4: "",
         type_session: "Séance B",
       },
     ];
@@ -437,6 +479,7 @@ router.post("/signup", async (req, res, next) => {
           repRange1: exerciseType.repRange1,
           repRange2: exerciseType.repRange2,
           repRange3: exerciseType.repRange3,
+          repRange4: exerciseType.repRange4,
           type_session: exerciseType.type_session,
           owner: newUser._id,
         });

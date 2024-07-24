@@ -43,6 +43,7 @@ router.post("/", async (req, res, next) => {
       repRange1,
       repRange2,
       repRange3,
+      repRange4,
       type_session,
     } = req.body;
 
@@ -57,6 +58,7 @@ router.post("/", async (req, res, next) => {
       repRange1: repRange1,
       repRange2: repRange2,
       repRange3: repRange3,
+      repRange4: repRange4,
       type_session: type_session,
       owner: req.user._id,
     });
@@ -93,6 +95,7 @@ router.put("/:id", async (req, res, next) => {
       repRange1,
       repRange2,
       repRange3,
+      repRange4,
       type_session,
     } = req.body;
 
@@ -116,6 +119,7 @@ router.put("/:id", async (req, res, next) => {
         repRange1: repRange1,
         repRange2: repRange2,
         repRange3: repRange3,
+        repRange4: repRange4,
         type_session: type_session,
       },
       { new: true }
