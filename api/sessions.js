@@ -6,33 +6,49 @@ const ExerciseUser = require("../models/exercise-user.model");
 const isAuthenticated = require("../src/is-authenticated");
 
 // Get all sessions by user
-
 router.get("/", isAuthenticated, async (req, res, next) => {
   try {
-    // add page, limit, sort
-
+    // Initialize pagination variables
     const page = parseInt(req.query.page) - 1 || 0;
     const limit = parseInt(req.query.limit) || 5;
-    const sort = req.query.sort || "-createdAt";
 
+    // Initialize sort object
+    const sort = {};
+    if (req.query.sortBy) {
+      const parts = req.query.sortBy.split(':');
+      sort[parts[0]] = parts[1] === 'desc' ? -1 : 1;
+    }
+
+    // Initialize filter object
+    const match = {};
+    if (req.query.completed) {
+      match.completed = req.query.completed === 'true';
+    }
+
+    // Query to match user
     const query = { owner: req.user._id };
 
-    // get sort by if negative then desc else asc
-
-    const sortField = sort[0] === "-" ? sort.substring(1) : sort;
-    const sortOrder = sort[0] === "-" ? "desc" : "asc";
-
+    // Fetch sessions with filtering, pagination, and sorting
     const sessions = await Session.find(query)
-      .populate("exercise_user_list")
+      .populate({
+        path: 'exercise_user_list',
+        match,
+        options: {
+          limit,
+          skip: page * limit,
+          sort
+        }
+      })
+      .sort(sort)
       .skip(page * limit)
-      .limit(limit)
-      .sort({ [sortField]: sortOrder });
+      .limit(limit);
 
     res.json(sessions);
   } catch (error) {
     next(error);
   }
 });
+
 
 // Get one session by ID
 
