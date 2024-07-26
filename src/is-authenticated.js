@@ -4,8 +4,6 @@ const User = require("../models/user.model");
 
 const isAuthenticated = async (req, res, next) => {
   try {
-    console.log("is Authenticated begin");
-
     const authorizationHeader = req.headers.authorization;
 
     if (!authorizationHeader) {
@@ -13,9 +11,6 @@ const isAuthenticated = async (req, res, next) => {
     }
 
     const token = authorizationHeader.replace("Bearer ", "");
-
-    console.log("token", token);
-
     if (!token) {
       // If token is undefined, return a 401 Unauthorized status
       return res.status(401).json({ message: "Unauthorized" });
@@ -28,8 +23,6 @@ const isAuthenticated = async (req, res, next) => {
       });
 
       const user = await User.findById(payload._id);
-
-      console.log("user", user);
 
       if (!user) {
         return res.status(401).json({ message: "Unauthorized" });
