@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const ExerciseUser = require("../models/exercise-user.model");
+const { checkAndAwardTrophies } = require("./trophy");
 
 // Get all exercise-user by his ID
 
@@ -79,7 +80,12 @@ router.post("/", async (req, res, next) => {
       owner: req.user._id,
       session: session,
     });
-    res.status(201).json({ id: createExerciseUser._id });
+
+    const newTrophies = await checkAndAwardTrophies(createExerciseUser);
+    console.log("NEW TROPHIES", newTrophies);
+
+    res.status(201).json({ ...createExerciseUser.toJSON(), newTrophies});
+
   } catch (error) {
     next(error);
   }
@@ -120,7 +126,10 @@ router.put("/:id", async (req, res, next) => {
       },
       { new: true }
     );
-    res.status(202).json(updateExerciseUser);
+
+    const newTrophies = await checkAndAwardTrophies(updateExerciseUser);
+
+    res.status(202).json({ ...updateExerciseUser, newTrophies});
   } catch (error) {
     next(error);
   }
