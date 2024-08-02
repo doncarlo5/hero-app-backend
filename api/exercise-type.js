@@ -4,7 +4,6 @@ const router = express.Router();
 const ExerciseType = require("../models/exercise-type.model");
 
 // Get all exercise types
-
 router.get("/", async (req, res, next) => {
   try {
     const page = parseInt(req.query.page) - 1 || 0;
@@ -13,13 +12,12 @@ router.get("/", async (req, res, next) => {
     const typeSession = req.query.type_session;
 
     // get sort by if negative then desc else asc
-
     const sortField = sort[0] === "-" ? sort.substring(1) : sort;
     const sortOrder = sort[0] === "-" ? "desc" : "asc";
 
     let query = { owner: req.user._id };
     if (typeSession) {
-      query.type_session = typeSession;
+      query.type_session = { $in: typeSession.split(",") }; // Split by comma and use $in for array matching
     }
 
     const exerciseUsers = await ExerciseType.find(query)
@@ -33,7 +31,6 @@ router.get("/", async (req, res, next) => {
 });
 
 // Create an exercise type
-
 router.post("/", async (req, res, next) => {
   try {
     const {
@@ -51,15 +48,24 @@ router.post("/", async (req, res, next) => {
       return res.status(400).json({ message: "Should be a number" });
     }
 
+    if (
+      !Array.isArray(type_session) ||
+      !type_session.every(session =>
+        ["Upper A", "Lower", "Upper B", "Other", "Séance A", "Séance B"].includes(session)
+      )
+    ) {
+      return res.status(400).json({ message: "Invalid type session(s)" });
+    }
+
     const createExerciseType = await ExerciseType.create({
-      name: name,
-      advice: advice,
-      timer: timer,
-      repRange1: repRange1,
-      repRange2: repRange2,
-      repRange3: repRange3,
-      repRange4: repRange4,
-      type_session: type_session,
+      name,
+      advice,
+      timer,
+      repRange1,
+      repRange2,
+      repRange3,
+      repRange4,
+      type_session,
       owner: req.user._id,
     });
 
@@ -70,7 +76,6 @@ router.post("/", async (req, res, next) => {
 });
 
 // Get one exercise type
-
 router.get("/:id", async (req, res, next) => {
   try {
     const oneExerciseType = await ExerciseType.findOne({
@@ -85,7 +90,6 @@ router.get("/:id", async (req, res, next) => {
 });
 
 // Update an exercise type
-
 router.put("/:id", async (req, res, next) => {
   try {
     const {
@@ -101,9 +105,12 @@ router.put("/:id", async (req, res, next) => {
 
     if (
       type_session &&
-      !["Upper A", "Lower", "Upper B", "Other", "Séance A", "Séance B"].includes(type_session)
+      (!Array.isArray(type_session) ||
+        !type_session.every(session =>
+          ["Upper A", "Lower", "Upper B", "Other", "Séance A", "Séance B"].includes(session)
+        ))
     ) {
-      return res.status(400).json({ message: "Invalid type session" });
+      return res.status(400).json({ message: "Invalid type session(s)" });
     }
 
     if (timer && typeof timer !== "number") {
@@ -113,14 +120,14 @@ router.put("/:id", async (req, res, next) => {
     const updateExerciseType = await ExerciseType.findByIdAndUpdate(
       { _id: req.params.id },
       {
-        name: name,
-        advice: advice,
-        timer: timer,
-        repRange1: repRange1,
-        repRange2: repRange2,
-        repRange3: repRange3,
-        repRange4: repRange4,
-        type_session: type_session,
+        name,
+        advice,
+        timer,
+        repRange1,
+        repRange2,
+        repRange3,
+        repRange4,
+        type_session,
       },
       { new: true }
     );
@@ -132,7 +139,6 @@ router.put("/:id", async (req, res, next) => {
 });
 
 // Delete an exercise type
-
 router.delete("/:id", async (req, res, next) => {
   try {
     const deleteExerciseType = await ExerciseType.findOneAndDelete({
