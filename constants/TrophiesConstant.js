@@ -94,7 +94,7 @@ const TrophyConstants = {
     },
     {
       name: "Tractions lestées",
-      trophyType: "grand_master",
+      trophyType: "grand master",
       level: 6,
       weightMultiplier: 0.5,
       repsGoal: 5,
@@ -152,7 +152,7 @@ const TrophyConstants = {
     },
     {
       name: "Développé incliné - Barre",
-      trophyType: "grand_master",
+      trophyType: "grand master",
       level: 6,
       weightMultiplier: 1.35,
       repsGoal: 5,
@@ -210,7 +210,7 @@ const TrophyConstants = {
     },
     {
       name: "Développé couché - Barre",
-      trophyType: "grand_master",
+      trophyType: "grand master",
       level: 6,
       weightMultiplier: 1.6,
       repsGoal: 5,
