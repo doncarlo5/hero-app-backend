@@ -67,6 +67,7 @@ router.post("/signup", async (req, res, next) => {
               level: trophy.level,
               awardedAt: null,
               achieved: false,
+              rewardText: trophy.rewardText,
               owner: userId,
             });
           }

@@ -62,6 +62,7 @@ const checkAndAwardTrophies = async (exerciseUser) => {
         existingTrophy.repsUser = repsUser;
         existingTrophy.weightUser = weightUser;
         existingTrophy.exerciseUser = exerciseUser._id;
+        existingTrophy.bodyWeight = bodyWeight;
         const UpdatedTrophies = await existingTrophy.save();
         newTrophies.push(UpdatedTrophies.toJSON());
       }

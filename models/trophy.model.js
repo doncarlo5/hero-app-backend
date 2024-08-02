@@ -20,6 +20,8 @@ const trophySchema = new Schema(
     repsUser: { type: Number },
     weightUser: { type: Number },
     awardedAt: { type: Date },
+    rewardText: { type: String },
+    bodyWeight: { type: Number },
     owner: {
       type: Schema.Types.ObjectId,
       ref: "User",
