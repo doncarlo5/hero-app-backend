@@ -18,6 +18,7 @@ const defaultExerciseTypes = [
     repRange3: "8-10",
     repRange4: "",
     type_session: ["Séance A", "Upper A"],
+    trophyLocked: true,
   },
   {
     name: "Leg Extension",
@@ -58,6 +59,7 @@ const defaultExerciseTypes = [
     repRange3: "8-10",
     repRange4: "",
     type_session: ["Upper A"],
+    trophyLocked: true,
   },
   {
     name: "Élévation frontale - Poulie vis-à-vis",
@@ -108,6 +110,7 @@ const defaultExerciseTypes = [
     repRange3: "8-10",
     repRange4: "",
     type_session: ["Upper B"],
+    trophyLocked: true,
   },
   {
     name: "Tractions Neutres",
@@ -198,6 +201,7 @@ const defaultExerciseTypes = [
     repRange3: "8-10",
     repRange4: "",
     type_session: ["Upper B"],
+    trophyLocked: true,
   },
   {
     name: "Curl Marteau - Haltères",

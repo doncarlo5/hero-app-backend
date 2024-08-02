@@ -33,6 +33,9 @@ const exerciseTypeSchema = new Schema(
       enum: ["Upper A", "Lower", "Upper B", "Other", "Séance A", "Séance B"],
       required: true,
     },
+    trophyLocked: {
+      type: Boolean,
+    },
     owner: {
       type: Schema.Types.ObjectId,
       ref: "User",
