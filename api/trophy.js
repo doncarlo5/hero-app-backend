@@ -12,6 +12,7 @@ const checkAndAwardTrophies = async (exerciseUser) => {
   const { type, weight, rep, session, owner } = exerciseUser;
   const sessionDetails = await Session.findById(session);
   const bodyWeight = sessionDetails.body_weight;
+  const bodyWeightUser = sessionDetails.body_weight
 
   // Fetch the exercise type details
   const exerciseType = await ExerciseType.findById(type);
@@ -62,7 +63,7 @@ const checkAndAwardTrophies = async (exerciseUser) => {
         existingTrophy.repsUser = repsUser;
         existingTrophy.weightUser = weightUser;
         existingTrophy.exerciseUser = exerciseUser._id;
-        existingTrophy.bodyWeight = bodyWeight;
+        existingTrophy.bodyWeight = bodyWeightUser;
         const UpdatedTrophies = await existingTrophy.save();
         newTrophies.push(UpdatedTrophies.toJSON());
       }
