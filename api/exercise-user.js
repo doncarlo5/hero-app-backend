@@ -43,7 +43,6 @@ router.get("/", async (req, res, next) => {
 
 router.get("/:id", async (req, res, next) => {
   try {
-    console.log(req.params.id, req.user._id);
     const oneExerciseUser = await ExerciseUser.findOne({
       owner: req.user._id,
       _id: req.params.id,
@@ -82,7 +81,6 @@ router.post("/", async (req, res, next) => {
     });
 
     const newTrophies = await checkAndAwardTrophies(createExerciseUser);
-    console.log("NEW TROPHIES", newTrophies);
 
     res.status(201).json({ ...createExerciseUser.toJSON(), newTrophies});
 
@@ -95,7 +93,6 @@ router.post("/", async (req, res, next) => {
 
 router.put("/:id", async (req, res, next) => {
   try {
-    console.log("REQ BODY 👋", req.body);
     const { type, weight, rep, comment } = req.body;
 
     if (!type || !weight || !rep) {
