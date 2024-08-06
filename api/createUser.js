@@ -15,7 +15,6 @@ const SECRET_TOKEN = process.env.SECRET_TOKEN;
 
 const createUser = async (sessionData) => {
   const supabaseId = sessionData.user.id;
-  console.log("🐼sessionData", sessionData);
   let firstName = "";
   let lastName = "";
   if (sessionData.user.user_metadata.full_name) {
