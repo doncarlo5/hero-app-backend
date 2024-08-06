@@ -2,17 +2,14 @@ const { Schema, model } = require("mongoose");
 
 const userSchema = new Schema(
   {
+    supabaseId: {
+      type: String,
+    },
     firstName: {
       type: String,
-      required: [true, "First name is required."],
-      maxLength: 30,
-      minLength: 2,
     },
     lastName: {
       type: String,
-      required: [true, "Last name is required."],
-      maxLength: 30,
-      minLength: 2,
     },
     email: {
       type: String,
@@ -23,8 +20,6 @@ const userSchema = new Schema(
     },
     password: {
       type: String,
-      required: [true, "Password is required."],
-      select: false,
     },
   },
   {

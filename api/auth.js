@@ -134,6 +134,7 @@ router.post("/login", async (req, res, next) => {
 //* Verify Token
 
 router.get("/verify", isAuthenticated, (req, res, next) => {
+  console.log("🐼 VERIFY req.user", req.user);
   const user = req.user;
   try {
     return res.status(200).json({ user, message: "Token is valid" });
@@ -173,5 +174,12 @@ router.patch("/settings", isAuthenticated, async (req, res, next) => {
     next(error);
   }
 });
+
+//* get user info
+
+// router.get("/user", isAuthenticated, async (req, res, next) => {
+//   try {
+//     const user = await User.findById(req.user._id);
+    
 
 module.exports = router;

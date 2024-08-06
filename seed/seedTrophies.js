@@ -1,17 +1,16 @@
 const mongoose = require("mongoose");
 const Trophy = require("../models/trophy.model");
-const ExerciseType = require("../models/exercise-type.model"); // Assuming this is the model for exercise types
-const MONGO_URI = process.env.MONGODB_URI;
+const ExerciseType = require("../models/exercise-type.model");
 const User = require("../models/user.model");
 const TrophyConstants = require("../constants/TrophiesConstant");
+const MONGODB_URI = process.env.MONGODB_URI;
 
-mongoose.connect(
-  "mongodb+srv://admin-test:yqbvFFLNMy9nG3Mo@hero-app.p7ekmkz.mongodb.net/?retryWrites=true&w=majority&appName=hero-app",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
+console.log("Connecting to MongoDB...", `${MONGODB_URI}`);
+
+mongoose.connect(MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 const initializeTrophies = async () => {
   try {
@@ -55,5 +54,3 @@ const initializeTrophies = async () => {
     mongoose.connection.close();
   }
 };
-
-initializeTrophies();
