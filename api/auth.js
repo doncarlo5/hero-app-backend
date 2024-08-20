@@ -174,11 +174,31 @@ router.patch("/settings", isAuthenticated, async (req, res, next) => {
   }
 });
 
+//* hasSeenOnboarding to true
+
+router.patch(
+  "/updateHasSeenOnboarding",
+  isAuthenticated,
+  async (req, res, next) => {
+    try {
+      const updatedUser = await User.findByIdAndUpdate(
+        req.user._id,
+        { hasSeenOnboarding: true },
+        { new: true }
+      );
+      res
+        .status(200)
+        .json({ message: "User updated", results: { updatedUser } });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
 //* get user info
 
 // router.get("/user", isAuthenticated, async (req, res, next) => {
 //   try {
 //     const user = await User.findById(req.user._id);
-    
 
 module.exports = router;
