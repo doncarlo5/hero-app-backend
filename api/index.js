@@ -7,6 +7,7 @@ const exerciseUser = require("./exercise-user.js");
 const exerciseType = require("./exercise-type.js");
 const trophy = require("./trophy.js");
 const emojis = require("./emojis.js");
+const feedback = require("./feedback.js");
 
 const isAuthenticated = require("../src/is-authenticated.js");
 
@@ -27,5 +28,7 @@ router.use("/exercise-user", isAuthenticated, exerciseUser);
 router.use("/exercise-type", isAuthenticated, exerciseType);
 
 router.use("/trophies", isAuthenticated, trophy);
+
+router.use("/feedbacks", feedback);
 
 module.exports = router;
