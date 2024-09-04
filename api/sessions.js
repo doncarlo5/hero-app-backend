@@ -15,29 +15,40 @@ router.get("/", isAuthenticated, async (req, res, next) => {
     // Initialize sort object
     const sort = {};
     if (req.query.sortBy) {
-      const parts = req.query.sortBy.split(':');
-      sort[parts[0]] = parts[1] === 'desc' ? -1 : 1;
+      const parts = req.query.sortBy.split(":");
+      sort[parts[0]] = parts[1] === "desc" ? -1 : 1;
     }
 
     // Initialize filter object
     const match = {};
     if (req.query.completed) {
-      match.completed = req.query.completed === 'true';
+      match.completed = req.query.completed === "true";
     }
 
     // Query to match user
     const query = { owner: req.user._id };
 
+    // Check if the 'lastFourWeeks' parameter is present
+    if (req.query.lastFourWeeks) {
+      const now = new Date();
+      const startOfCurrentWeek = new Date(now.setDate(now.getDate() - now.getDay()));
+      const fourWeeksAgo = new Date(startOfCurrentWeek);
+      fourWeeksAgo.setDate(fourWeeksAgo.getDate() - 28); // Go back 4 weeks
+
+      // Fetch sessions from the last 4 weeks excluding the current week
+      query.date_session = { $gte: fourWeeksAgo, $lt: startOfCurrentWeek };
+    }
+
     // Fetch sessions with filtering, pagination, and sorting
     const sessions = await Session.find(query)
       .populate({
-        path: 'exercise_user_list',
+        path: "exercise_user_list",
         match,
         options: {
           limit,
           skip: page * limit,
-          sort
-        }
+          sort,
+        },
       })
       .sort(sort)
       .skip(page * limit)
@@ -48,7 +59,6 @@ router.get("/", isAuthenticated, async (req, res, next) => {
     next(error);
   }
 });
-
 
 // Get one session by ID
 
