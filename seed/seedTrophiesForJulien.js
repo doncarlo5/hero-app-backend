@@ -24,6 +24,38 @@ const awardTrophiesToSpecificUser = async () => {
 
     console.log(`Processing user: ${user.email}`);
 
+    // Fetch all exercise types for the user to ensure trophies exist for each
+    const exerciseTypes = await ExerciseType.find({ owner: user._id });
+
+    for (const exerciseType of exerciseTypes) {
+      const trophyCriteria = TrophiesConstants[exerciseType.name];
+
+      // Ensure all trophies are created for this exercise type
+      if (trophyCriteria) {
+        for (const trophy of trophyCriteria) {
+          const existingTrophy = await Trophy.findOne({ owner: user._id, exerciseType: exerciseType._id, level: trophy.level });
+          if (!existingTrophy) {
+            // Create a trophy if it doesn't exist
+            await Trophy.create({
+              name: trophy.name,
+              exerciseType: exerciseType._id,
+              exerciseUser: null, // Will be updated later
+              trophyType: trophy.trophyType,
+              repsGoal: trophy.repsGoal,
+              weightMultiplier: trophy.weightMultiplier,
+              description: trophy.description,
+              level: trophy.level,
+              achieved: false,
+              awardedAt: null,
+              owner: user._id,
+              rewardText: trophy.rewardText,
+            });
+            console.log(`Created new trophy: ${trophy.name} for user: ${user.email}`);
+          }
+        }
+      }
+    }
+
     // Fetch all exercise sessions for the user
     const sessions = await Session.find({ owner: user._id }).populate("exercise_user_list");
 
@@ -48,12 +80,9 @@ const awardTrophiesToSpecificUser = async () => {
           continue;
         }
 
-        // Fetch any existing trophies the user may already have for this exercise type
-        const existingTrophies = await Trophy.find({ owner: user._id, exerciseType: exerciseUser.type });
-
         // Iterate through each trophy level in the criteria
         for (const trophy of trophyCriteria) {
-          const { name, weightMultiplier, repsGoal, description, level, trophyType } = trophy;
+          const { name, weightMultiplier, repsGoal, level } = trophy;
 
           let trophyAchieved = false;
           let repsUser = 0;
@@ -69,40 +98,21 @@ const awardTrophiesToSpecificUser = async () => {
             }
           }
 
-          // Check if user already has this trophy
-          const existingTrophy = existingTrophies.find(t => t.level === level);
+          // Fetch the existing trophy for the user at this level
+          const existingTrophy = await Trophy.findOne({ owner: user._id, exerciseType: exerciseUser.type, level });
 
-          if (existingTrophy && !existingTrophy.achieved && trophyAchieved) {
-            // Update existing trophy if not yet achieved
-            existingTrophy.achieved = true;
-            existingTrophy.awardedAt = new Date();
-            existingTrophy.repsUser = repsUser;
-            existingTrophy.weightUser = weightUser;
-            existingTrophy.bodyWeight = bodyWeight;
-            await existingTrophy.save();
-            console.log(`Updated trophy: ${name} for user: ${user.email}`);
-          } else if (!existingTrophy && trophyAchieved) {
-            // Award a new trophy if conditions are met
-            const newTrophy = new Trophy({
-              name,
-              exerciseType: exerciseUser.type,
-              exerciseUser: exerciseUser._id,
-              trophyType,
-              repsGoal,
-              weightMultiplier,
-              achieved: true,
-              description,
-              level,
-              repsUser,
-              weightUser,
-              awardedAt: new Date(),
-              owner: user._id,
-              bodyWeight,
-              rewardText: trophy.rewardText,
-            });
-
-            await newTrophy.save();
-            console.log(`Awarded new trophy: ${name} for user: ${user.email}`);
+          if (existingTrophy) {
+            if (trophyAchieved && !existingTrophy.achieved) {
+              // Update the trophy to achieved if the conditions are met
+              existingTrophy.achieved = true;
+              existingTrophy.awardedAt = new Date();
+              existingTrophy.repsUser = repsUser;
+              existingTrophy.weightUser = weightUser;
+              existingTrophy.bodyWeight = bodyWeight;
+              existingTrophy.exerciseUser = exerciseUser._id;
+              await existingTrophy.save();
+              console.log(`Updated trophy: ${name} for user: ${user.email}`);
+            }
           }
         }
       }
