@@ -79,7 +79,7 @@ const defaultExerciseTypes = [
     repRange2: "10-15",
     repRange3: "10-15",
     repRange4: "",
-    type_session: ["Lower"],
+    type_session: ["Lower", "Séance B"],
   },
   {
     name: "Fentes - Barre",
@@ -150,7 +150,7 @@ const defaultExerciseTypes = [
     repRange2: "6-8",
     repRange3: "8-10",
     repRange4: "",
-    type_session: ["Upper A"],
+    type_session: ["Upper A", "Séance A"],
   },
   {
     name: "Curl Incliné - Barre EZ",
@@ -160,7 +160,7 @@ const defaultExerciseTypes = [
     repRange2: "8-12",
     repRange3: "8-12",
     repRange4: "",
-    type_session: ["Upper A"],
+    type_session: ["Upper A", "Séance A"],
   },
   {
     name: "Élévation latérales - Haltères",
@@ -212,16 +212,6 @@ const defaultExerciseTypes = [
     repRange3: "8-12",
     repRange4: "",
     type_session: ["Upper B"],
-  },
-  {
-    name: "Hip Thrust - Barre",
-    advice: 'Pic contraction 2" en haut',
-    timer: 90,
-    repRange1: "8-12",
-    repRange2: "8-12",
-    repRange3: "8-12",
-    repRange4: "",
-    type_session: ["Lower"],
   },
   {
     name: "Élévation frontale - Haltères",
@@ -326,7 +316,7 @@ const defaultExerciseTypes = [
     type_session: ["Upper B"],
   },
   {
-    name: "Tractions lestées prise neutre",
+    name: "Tractions lestées prise neutre - Séance A",
     advice: "Top set puis -10% du poids à chaque série",
     timer: 120,
     repRange1: "4-6",
@@ -346,7 +336,7 @@ const defaultExerciseTypes = [
     type_session: ["Séance A"],
   },
   {
-    name: "Upright Row - Haltères",
+    name: "Upright Row - Haltères - Séance A",
     advice: "",
     timer: 60,
     repRange1: "10-15",
@@ -356,7 +346,7 @@ const defaultExerciseTypes = [
     type_session: ["Séance A"],
   },
   {
-    name: "Curl Incliné - Haltères",
+    name: "Curl Incliné - Haltères - Séance A",
     advice: "1 mega série - 10s entre chaque - 4 séries",
     timer: 10,
     repRange1: "10-15",
@@ -366,7 +356,7 @@ const defaultExerciseTypes = [
     type_session: ["Séance A"],
   },
   {
-    name: "Dips lestés",
+    name: "Dips lestées",
     advice: "Top set puis -10% du poids à chaque série",
     timer: 150,
     repRange1: "4-6",
@@ -394,10 +384,10 @@ const defaultExerciseTypes = [
     repRange2: "10-15",
     repRange3: "10-15",
     repRange4: "",
-    type_session: ["Séance B"],
+    type_session: ["Séance B", "Lower"],
   },
   {
-    name: "Up Right Row - Haltères",
+    name: "Upright Row - Haltères - Séance B",
     advice: "",
     timer: 60,
     repRange1: "10-15",
