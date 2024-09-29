@@ -71,3 +71,5 @@ const ProgramConstants = {
       { name: "Extension Triceps Nuque - Haltères", alternatives: [] },
     ],
   };
+
+module.exports = ProgramConstants;
