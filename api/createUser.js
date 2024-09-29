@@ -9,7 +9,9 @@ const isAuthenticated = require("../src/is-authenticated");
 const Trophy = require("../models/trophy.model");
 const TrophiesConstant = require("../constants/TrophiesConstant");
 const defaultExerciseTypesContant = require("../constants/DefaultExerciseTypesConstant");
+const ProgramConstants = require("../constants/ProgramConstant");
 const { default: mongoose } = require("mongoose");
+const Program = require("../models/program.model");
 const salt = 10;
 const SECRET_TOKEN = process.env.SECRET_TOKEN;
 
@@ -33,14 +35,37 @@ const createUser = async (sessionData) => {
     email,
   });
 
-  // Add exercise type default to the new user
-
+  // Add exercise type defaults to the new user
   const createdExerciseTypes = await ExerciseType.insertMany(
     defaultExerciseTypesContant.map((exerciseType) => ({
       ...exerciseType,
       owner: newUser._id,
     }))
   );
+
+  // Create a mapping from exercise type names to their _ids
+  const exerciseTypeMap = createdExerciseTypes.reduce((map, exerciseType) => {
+    map[exerciseType.name] = exerciseType._id;
+    return map;
+  }, {});
+
+  // Seed programs for the new user based on ProgramConstants
+  for (const sessionType in ProgramConstants) {
+    const exercises = ProgramConstants[sessionType].map((exercise, index) => ({
+      exerciseType: exerciseTypeMap[exercise.name],
+      order: index + 1,
+      alternatives: exercise.alternatives.map(
+        (alt) => exerciseTypeMap[alt] // Map alternative exercise names to their ObjectIds
+      ),
+    }));
+
+    // Create program for the user
+    await Program.create({
+      sessionType,
+      exercises,
+      owner: newUser._id,
+    });
+  }
 
   // Function to seed trophies for a new user
   for (const exerciseType of createdExerciseTypes) {

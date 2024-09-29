@@ -73,21 +73,6 @@ router.get("/:id", async (req, res, next) => {
 // Create a session
 router.post("/", isAuthenticated, async (req, res, next) => {
   try {
-    // Fetch the program for the session type to suggest exercises
-    const program = await Program.findOne({
-      sessionType: req.body.type_session,
-      owner: req.user._id,
-    }).populate("exercises.exerciseType exercises.alternatives");
-
-    let exerciseSuggestions = [];
-    if (program) {
-      // Use the program to suggest exercises
-      exerciseSuggestions = program.exercises.map((exercise) => ({
-        exerciseType: exercise.exerciseType,
-        alternatives: exercise.alternatives,
-      }));
-    }
-
     const createSession = await Session.create({
       date_session: req.body.date_session,
       type_session: req.body.type_session,
