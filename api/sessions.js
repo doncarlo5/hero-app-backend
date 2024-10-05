@@ -83,7 +83,7 @@ router.post("/", isAuthenticated, async (req, res, next) => {
       owner: req.user._id,
     });
 
-    res.json({ session: createSession, exerciseSuggestions });
+    res.json({ session: createSession });
   } catch (error) {
     next(error);
   }
