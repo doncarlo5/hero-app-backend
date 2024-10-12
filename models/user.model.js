@@ -21,10 +21,6 @@ const userSchema = new Schema(
     password: {
       type: String,
     },
-    hasSeenOnboarding: {
-      type: Boolean,
-      default: false,
-    },
   },
   {
     timestamps: true,
