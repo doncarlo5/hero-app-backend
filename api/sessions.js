@@ -54,6 +54,16 @@ router.get("/", isAuthenticated, async (req, res, next) => {
   }
 });
 
+// get all sessions by user last 31 days
+router.get("/last-31-days", isAuthenticated, async (req, res, next) => {
+  try {
+    const sessions = await Session.find({ owner: req.user._id, date_session: { $gte: new Date(Date.now() - 31 * 24 * 60 * 60 * 1000) } });
+    res.json(sessions);
+  } catch (error) {
+    next(error);
+  }
+});
+
 // Get one session by ID
 router.get("/:id", async (req, res, next) => {
   try {
