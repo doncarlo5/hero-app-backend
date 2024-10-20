@@ -51,20 +51,33 @@ const createUser = async (sessionData) => {
 
   // Seed programs for the new user based on ProgramConstants
   for (const sessionType in ProgramConstants) {
-    const exercises = ProgramConstants[sessionType].map((exercise, index) => ({
-      exerciseType: exerciseTypeMap[exercise.name],
-      order: index + 1,
-      alternatives: exercise.alternatives.map(
-        (alt) => exerciseTypeMap[alt] // Map alternative exercise names to their ObjectIds
-      ),
-    }));
+    const exercises = ProgramConstants[sessionType].map((exercise, index) => {
+      const exerciseTypeId = exerciseTypeMap[exercise.name];
+      if (!exerciseTypeId) {
+        return null; // Skip this exercise if no matching type is found
+      }
+      return {
+        exerciseType: exerciseTypeId,
+        order: index + 1,
+        alternatives: exercise.alternatives
+          .map(alt => exerciseTypeMap[alt])
+          .filter(id => id !== undefined), // Remove any undefined alternatives
+      };
+    }).filter(exercise => exercise !== null); // Remove null exercises
 
-    // Create program for the user
-    await Program.create({
-      sessionType,
-      exercises,
-      owner: newUser._id,
-    });
+    if (exercises.length > 0) {
+      // Create program for the user only if there are valid exercises
+      try {
+        await Program.create({
+          sessionType,
+          exercises,
+          owner: newUser._id,
+        });
+      } catch (error) {
+        // If an error occurs, we'll just skip this program
+        continue;
+      }
+    }
   }
 
   // Function to seed trophies for a new user

@@ -178,7 +178,6 @@ router.patch("/settings", isAuthenticated, async (req, res, next) => {
 
 router.put("/update", isAuthenticated, async (req, res, next) => {
   try {
-    console.log("🟢 req.body", req.body);
     
     // Extract only the fields we want to update
     const { firstName, lastName, email, hasSeenOnboarding } = req.body;
@@ -199,7 +198,6 @@ router.put("/update", isAuthenticated, async (req, res, next) => {
       { new: true }
     );
     
-    console.log("🟢 updatedUser", updatedUser);
     res.status(200).json({ message: "User updated", results: { updatedUser } });
   } catch (error) {
     next(error);
