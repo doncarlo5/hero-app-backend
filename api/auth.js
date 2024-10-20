@@ -176,24 +176,35 @@ router.patch("/settings", isAuthenticated, async (req, res, next) => {
 
 //* hasSeenOnboarding to true
 
-router.patch(
-  "/updateHasSeenOnboarding",
-  isAuthenticated,
-  async (req, res, next) => {
-    try {
-      const updatedUser = await User.findByIdAndUpdate(
-        req.user._id,
-        { hasSeenOnboarding: true },
-        { new: true }
-      );
-      res
-        .status(200)
-        .json({ message: "User updated", results: { updatedUser } });
-    } catch (error) {
-      next(error);
-    }
+router.put("/update", isAuthenticated, async (req, res, next) => {
+  try {
+    console.log("🟢 req.body", req.body);
+    
+    // Extract only the fields we want to update
+    const { firstName, lastName, email, hasSeenOnboarding } = req.body;
+    
+    const updatedFields = {
+      firstName,
+      lastName,
+      email,
+      hasSeenOnboarding
+    };
+
+    // Remove undefined fields
+    Object.keys(updatedFields).forEach(key => updatedFields[key] === undefined && delete updatedFields[key]);
+
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user._id,
+      updatedFields,
+      { new: true }
+    );
+    
+    console.log("🟢 updatedUser", updatedUser);
+    res.status(200).json({ message: "User updated", results: { updatedUser } });
+  } catch (error) {
+    next(error);
   }
-);
+});
 
 //* get user info
 
